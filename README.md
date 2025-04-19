@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,7 @@
             background-color: #f4f4f4; /* لون الخلفية */
             margin: 0;
             padding: 20px;
-            direction: rtl;
+            direction: rtl; /* اتجاه الكتابة من اليمين إلى اليسار */
         }
         header {
             background: white; /* خلفية الرأسية بيضاء */
@@ -78,7 +78,7 @@
         }
     </style>
     <script>
-        const formUrl = "https://docs.google.com/forms/d/e/FORM_ID/formResponse"; // استبدل FORM_ID بالمعرف الفعلي للنموذج
+        const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSd2wqs0BeRyoDjtVSVCWQbSkd-Ne-rjBY5lfrJPQTUrDxf2KQ/formResponse"; // معرف النموذج
 
         function submitForm() {
             // الحصول على القيم من الحقول
@@ -88,9 +88,9 @@
             
             // إعداد البيانات للإرسال
             var formData = new FormData();
-            formData.append('entry.1418026293', projectName);
-            formData.append('entry.2143081268', engineerName);
-            formData.append('entry.470136879', siteName);
+            formData.append('entry.1418026293', projectName); // إضافة اسم المشروع
+            formData.append('entry.2143081268', engineerName); // إضافة اسم المهندس
+            formData.append('entry.470136879', siteName); // إضافة اسم الموقع
 
             // إرسال البيانات إلى Google Forms
             fetch(formUrl, {
@@ -100,11 +100,11 @@
             })
             .then(response => {
                 console.log("تم إرسال البيانات بنجاح!");
-                displaySuccessMessage(projectName, engineerName, siteName);
+                displaySuccessMessage(projectName, engineerName, siteName); // عرض رسالة النجاح
             })
             .catch(error => {
                 console.error("خطأ في إرسال البيانات: ", error);
-                alert("فشل في إرسال البيانات.");
+                alert("فشل في إرسال البيانات."); // عرض رسالة الخطأ
             });
         }
 
@@ -116,7 +116,7 @@
                 اسم المهندس: ${engineerName}<br>
                 اسم الموقع: ${siteName}
             `;
-            successMessage.style.display = "block";
+            successMessage.style.display = "block"; // إظهار رسالة النجاح
         }
 
         function setupGPS() {
@@ -124,8 +124,8 @@
             gpsButton.addEventListener('click', function() {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function(position) {
-                        var latitude = position.coords.latitude;
-                        var longitude = position.coords.longitude;
+                        var latitude = position.coords.latitude; // الحصول على خط العرض
+                        var longitude = position.coords.longitude; // الحصول على خط الطول
                         console.log("خط العرض: " + latitude);
                         console.log("خط الطول: " + longitude);
                         alert("الموقع المحدد: " + "خط العرض: " + latitude + ", خط الطول: " + longitude);
@@ -140,7 +140,7 @@
         }
 
         window.onload = function() {
-            setupGPS();
+            setupGPS(); // إعداد GPS عند تحميل الصفحة
         };
     </script>
 </head>
@@ -149,7 +149,7 @@
         <h1>نموذج إدخال البيانات</h1>
     </header>
     <main>
-        <form onsubmit="submitForm(); return false;">
+        <form onsubmit="submitForm(); return false;"> <!-- منع الإرسال الافتراضي -->
             <label for="projectName">اسم المشروع:</label>
             <input type="text" name="entry.1418026293" id="projectName" required><br><br>
 
@@ -162,9 +162,9 @@
             <label for="gpsButton">زر لتحديد الموقع عبر GPS:</label>
             <input type="button" name="entry.1410762084" id="gpsButton" value="تحديد الموقع"><br><br>
 
-            <input type="submit" value="إرسال">
+            <input type="submit" value="إرسال"> <!-- زر الإرسال -->
         </form>
-        <div class="success-message" id="successMessage"></div>
+        <div class="success-message" id="successMessage"></div> <!-- منطقة عرض رسالة النجاح -->
     </main>
     <footer>
         <p>جميع الحقوق محفوظة &copy; 2024</p>
