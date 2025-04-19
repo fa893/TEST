@@ -100,12 +100,23 @@
             })
             .then(response => {
                 console.log("تم إرسال البيانات بنجاح!");
-                alert("تم إرسال البيانات بنجاح!");
+                displaySuccessMessage(projectName, engineerName, siteName);
             })
             .catch(error => {
                 console.error("خطأ في إرسال البيانات: ", error);
                 alert("فشل في إرسال البيانات.");
             });
+        }
+
+        function displaySuccessMessage(projectName, engineerName, siteName) {
+            const successMessage = document.getElementById("successMessage");
+            successMessage.innerHTML = `
+                <strong>تم إرسال بياناتك بنجاح!</strong><br>
+                اسم المشروع: ${projectName}<br>
+                اسم المهندس: ${engineerName}<br>
+                اسم الموقع: ${siteName}
+            `;
+            successMessage.style.display = "block";
         }
 
         function setupGPS() {
@@ -153,9 +164,7 @@
 
             <input type="submit" value="إرسال">
         </form>
-        <div class="success-message" id="successMessage">
-            تم إرسال بياناتك بنجاح! سيتم تحويلك الآن إلى الصفحة الرئيسية.
-        </div>
+        <div class="success-message" id="successMessage"></div>
     </main>
     <footer>
         <p>جميع الحقوق محفوظة &copy; 2024</p>
